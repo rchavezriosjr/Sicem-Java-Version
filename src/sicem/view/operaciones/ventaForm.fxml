@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="680.0" style="-fx-background-color: #fff;" stylesheets="@../../css/estilos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="sicem.view.operaciones.VentaFormController">
+   <children>
+      <Pane layoutX="67.0" layoutY="14.0" prefHeight="44.0" prefWidth="200.0" styleClass="royalblue" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="9.0" styleClass="title-form" text="Información venta" />
+         </children>
+      </Pane>
+      <Pane layoutX="161.0" layoutY="96.0" prefHeight="150.0" prefWidth="200.0" styleClass="contentpanel-form" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="64.0">
+         <children>
+            <Label prefWidth="320.0" styleClass="subtitle-form" text="Datos venta">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <TextField layoutX="15.0" layoutY="50.0" prefWidth="235.0" styleClass="textfield-form" />
+            <Label layoutX="15.0" layoutY="31.0" styleClass="label-form" text="Cliente" />
+            <TextField editable="false" layoutX="320.0" layoutY="50.0" prefWidth="170.0" styleClass="textfield-form" />
+            <Label layoutX="320.0" layoutY="31.0" styleClass="label-form" text="Cod. factura" />
+            <DatePicker editable="false" layoutX="15.0" layoutY="110.0" prefHeight="28.0" prefWidth="170.0" styleClass="datepicker-form" />
+            <Label layoutX="15.0" layoutY="92.0" styleClass="label-form" text="Fecha venta" />
+            <ComboBox layoutX="240.0" layoutY="110.0" prefWidth="135.0" styleClass="combobox-form" />
+            <Label layoutX="240.0" layoutY="92.0" styleClass="label-form" text="Tipo de pago" />
+            <CheckBox layoutX="420.0" layoutY="114.0" mnemonicParsing="false" styleClass="checkbox-form" text="Venta a crédito" />
+         </children>
+      </Pane>
+      <Pane layoutX="20.0" layoutY="248.0" prefHeight="150.0" prefWidth="200.0" styleClass="contentpanel-form" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="245.0">
+         <children>
+            <Label prefWidth="320.0" styleClass="subtitle-form" text="Datos venta">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <TextField layoutX="15.0" layoutY="50.0" prefWidth="235.0" styleClass="textfield-form" />
+            <Label layoutX="15.0" layoutY="31.0" styleClass="label-form" text="Cliente" />
+            <TextField editable="false" layoutX="320.0" layoutY="50.0" prefWidth="170.0" styleClass="textfield-form" />
+            <Label layoutX="320.0" layoutY="31.0" styleClass="label-form" text="Cod. factura" />
+            <DatePicker editable="false" layoutX="15.0" layoutY="110.0" prefHeight="28.0" prefWidth="170.0" styleClass="datepicker-form" />
+            <Label layoutX="15.0" layoutY="92.0" styleClass="label-form" text="Fecha venta" />
+            <ComboBox layoutX="240.0" layoutY="110.0" prefWidth="135.0" styleClass="combobox-form" />
+            <Label layoutX="240.0" layoutY="92.0" styleClass="label-form" text="Tipo de pago" />
+            <CheckBox layoutX="420.0" layoutY="114.0" mnemonicParsing="false" styleClass="checkbox-form" text="Venta a crédito" />
+         </children>
+      </Pane>
+      <HBox layoutX="262.0" layoutY="599.0" spacing="25.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <Button mnemonicParsing="false" styleClass="btn-secondary" text="Cancelar" />
+            <Button mnemonicParsing="false" styleClass="btn-primary" text="Guardar" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
