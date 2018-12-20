@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.BorderPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="646.0" prefWidth="990.0" styleClass="scene-rounded" stylesheets="@../../css/estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicem.view.home.HomeController">
    <children>
-      <Pane fx:id="content" layoutX="694.0" layoutY="241.0" prefHeight="596.0" prefWidth="950.0" styleClass="white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <BorderPane fx:id="content" layoutX="694.0" layoutY="241.0" prefHeight="596.0" prefWidth="950.0" styleClass="white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
       <Pane fx:id="header" layoutX="22.0" layoutY="-44.0" prefHeight="50.0" prefWidth="200.0" styleClass="royalblue" stylesheets="@../../css/estilos.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="62.0" layoutY="13.0" styleClass="txt-blue-secondary" text="Sicem">
@@ -21,7 +22,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="menu" layoutX="10.0" mnemonicParsing="false" onAction="#handleMenu" onMouseReleased="#handleMenu" prefHeight="50.0" prefWidth="50.0">
+            <Button fx:id="menu" layoutX="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
                <styleClass>
                   <String fx:value="btn-icon" />
                   <String fx:value="menu-btn" />
@@ -30,17 +31,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="avatarHeader" fitHeight="50.0" fitWidth="50.0" layoutX="915.0" pickOnBounds="true">
+            <ImageView fx:id="avatar" fitHeight="46.0" fitWidth="46.0" layoutX="931.0" layoutY="2.0" pickOnBounds="true" style="-fx-cursor: hand;">
                <image>
-                  <Image url="@../../../../../../Imágenes/151025-cool-windows-10-backgrounds-2560x1600-for-hd-1080p.jpg" />
+                  <Image url="@../../../../../../Imágenes/user-picture.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblUsername" alignment="CENTER_RIGHT" layoutX="665.0" layoutY="10.0" prefWidth="240.0" styleClass="txt-white" text="Nombre de usuario">
+            <Label fx:id="lblUsername" alignment="CENTER_RIGHT" layoutX="678.0" layoutY="10.0" prefWidth="240.0" styleClass="txt-white" text="Nombre de usuario">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="lblID" alignment="CENTER_RIGHT" layoutX="665.0" layoutY="25.0" prefWidth="240.0" styleClass="txt-white" text="ID Usuario">
+            <Label fx:id="lblID" alignment="CENTER_RIGHT" layoutX="678.0" layoutY="25.0" prefWidth="240.0" styleClass="txt-white" text="ID Usuario">
                <font>
                   <Font size="12.0" />
                </font>
@@ -49,12 +50,13 @@
       </Pane>
       <Pane id="#navbar" fx:id="navbar" layoutY="67.0" minHeight="426.0" prefHeight="596.0" prefWidth="40.0" styleClass="antiflash-white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <VBox layoutY="3.0" spacing="5.0">
+            <VBox fx:id="vbox" layoutY="3.0" spacing="5.0">
                <children>
                   <Button id="inicioTab" fx:id="inicioTab" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="icon-tab" />
                   <Button id="directorioTab" fx:id="directorioTab" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="icon-tab" />
                   <Button id="operacionesTab" fx:id="operacionesTab" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="icon-tab" />
                   <Button id="productosTab" fx:id="productosTab" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="icon-tab" />
+                  <Button id="reportesTab" fx:id="reportesTab" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="icon-tab" />
                   <Button id="administrarTab" fx:id="administrarTab" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="icon-tab" />
                </children>
             </VBox>

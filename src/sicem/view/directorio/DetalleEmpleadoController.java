@@ -5,18 +5,29 @@
  */
 package sicem.view.directorio;
 
+import DB.conexion;
+import DB.sqlite;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import objetos.empleado;
+import objetos.permisos;
+import sicem.utilities.Load;
+import sicem.utilities.Popup;
+import sicem.utilities.rounded;
 
 /**
  * FXML Controller class
@@ -49,6 +60,8 @@ public class DetalleEmpleadoController implements Initializable {
     @FXML private TextField txtFechaContratacion;
     @FXML private Label EstadoValue;
     @FXML private Label labelFechaModificacion;
+    
+    conexion c = new conexion();
 
 
     /**
@@ -56,7 +69,85 @@ public class DetalleEmpleadoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        inicia();
     }    
+    
+    
+    private void inicia(){
+        editar.setVisible(false);
+        EstadoValue.setText("");
+        labelFechaModificacion.setText("");
+        rounded.roundImageView(foto, new Image("/sicem/images/avatar.png"));
+        
+        
+        // Evt listener cambio de tab
+        contentTabs.getSelectionModel().selectedItemProperty().addListener((evt, Old, New) -> {
+            if(New.getId().equalsIgnoreCase("infoLaboral")){
+                contentInfoLaboral.setVisible(true);
+                contentInfoPersonal.setVisible(false);
+            }else{
+                contentInfoLaboral.setVisible(false);
+                contentInfoPersonal.setVisible(true);
+            }
+        });
+        
+        
+        // Evt Editar button
+        editar.setOnAction(e -> {
+            try{
+                FXMLLoader loader = Load.Loader("/sicem/view/directorio/empleadoForm.fxml");
+                Scene scene= new Scene(loader.load());
+                EmpleadoFormController form = loader.getController();
+                form.setDataView(Integer.parseInt(txtID.getText()), this);
+                Load.Form(scene).showAndWait();
+            }catch(IOException ex){}
+        });
+    }
+    
+    
+    public void setInfo(int id){
+        empleado data = new empleado().Detalle(id);
+        permisos p = new permisos().get(sqlite.getUser());
+
+        if(data != null){
+            editar.setVisible(true);
+
+            txtID.setText(Integer.toString(data.getId()));
+            txtNombre.setText(data.getNombres()+" "+data.getApellidos());
+            setDepartamento(data.getDepartamentoId());
+            txtTituloLaboral.setText(data.getTituloLaboral());
+            fechaNacimiento.setText(data.getFechaNacimiento().toString());
+            txtFechaContratacion.setText(data.getFechaContratacion().toString());
+            txtEstadoCivil.setText((data.getEstadoCivil()==0) ? "Soltero" : "Casado");
+            txtGenero.setText((data.getGenero()==1) ? "Masculino" : "Femenino");
+            txtDireccion.setText(data.getDomicilio());
+            txtCiudad.setText(data.getCiudad());
+            txtTel.setText(data.getTelefono());
+            txtCedula.setText(data.getCedula());
+            txtEmail.setText(data.getEmail());
+            txtObservaciones.setText(data.getObservaciones());
+            setReportarA(data.getReportarA());
+            foto.setImage(data.getFoto());
+            labelFechaModificacion.setText(data.getFechaModificacion());
+            EstadoValue.setText((data.getEstado()==1) ? "Habilitado" : "Deshabilitado");
+            
+            if(p.getDeditar() == 0) editar.setVisible(false);
+        }else
+            Popup.error(
+                "Error con la solicitud", 
+                "Ocurrió un error inesperado al tratar de obtener la información solicitada. Por favor, intente nuevamente.");
+    }
+    
+    private void setDepartamento(int id){
+        Object value = c.readerScalar("select Nombre from Departamentos where ID="+id, String.class);
+        if (value != null)
+            txtDepartamento.setText((String)value);
+    }
+    
+    private void setReportarA(int id){
+        Object value = c.readerScalar("select Nombres from Empleado where ID="+ id, String.class);
+        if (value != null)
+            txtReportarA.setText((String)value);
+    }
     
 }

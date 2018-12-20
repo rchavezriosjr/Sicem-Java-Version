@@ -5,10 +5,29 @@
  */
 package sicem.view.productos;
 
+import DB.sqlite;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import objetos.SearchResult;
+import objetos.permisos;
+import objetos.producto;
+import sicem.utilities.Items;
+import sicem.utilities.Load;
 /**
  * FXML Controller class
  *
@@ -16,12 +35,96 @@ import javafx.fxml.Initializable;
  */
 public class ProductosController implements Initializable {
 
+    @FXML private ImageView imageviewSearch;
+    @FXML private TextField txtBusqueda;
+    @FXML private ChoiceBox<String> metodoBusqueda;
+    @FXML private TableView<SearchResult> vistaResultados;
+    @FXML private TableColumn<SearchResult, String> columnID;
+    @FXML private TableColumn<SearchResult, String> columnName;
+    @FXML private TableColumn<SearchResult, String> columnFechaModificacion;
+    @FXML private BorderPane contentDetails;
+    
+    DetalleProductoController detalle;
+    boolean see;
+
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        inicia();
     }    
+    
+    
+    private void inicia(){
+        components();
+        metodoBusqueda.setItems(Items.producto());
+        metodoBusqueda.getSelectionModel().selectFirst();
+        
+        columnID.setCellValueFactory(cell -> cell.getValue().getIdProperty());
+        columnName.setCellValueFactory(cell -> cell.getValue().getNameProperty());
+        columnFechaModificacion.setCellValueFactory(cell -> cell.getValue().getModificationDateProperty());
+        
+        
+        // Evt txtBusqueda text change listener
+        txtBusqueda.textProperty().addListener((evt, Old, New) -> {
+            if(New.length()>0) cargar(true);
+            else cargar(false);
+        });
+        
+        
+        //Evt selection listener vistaResultados
+        vistaResultados.getSelectionModel().selectedItemProperty().addListener((evt, Old, New) -> {
+            SearchResult item = (SearchResult) New;
+            detalle.setInfo(Integer.parseInt(item.getId()));
+        });
+    }
+    
+    
+    private void components(){
+        try{
+            FXMLLoader loader = Load.Loader("/sicem/view/productos/detalleProducto.fxml");
+            Pane pane = loader.load();
+            detalle = loader.getController();
+            detalle.ocultaCampos();
+            
+            contentDetails.setCenter(pane);
+        }catch(IOException ex){ System.out.println("Error carga components"); }
+    }
+    
+    
+    public void cargar(boolean buscar){
+        String value = txtBusqueda.getText();
+        int index = metodoBusqueda.getSelectionModel().getSelectedIndex();
+        
+        try{
+        ObservableList<SearchResult> items = (buscar) ? new producto().Buscar(value, index) : new producto().MostrarHabilitados();
+        vistaResultados.setItems(items); 
+        }catch(Exception ex){}
+    }
+    
+    public void verificaPermisos(){
+        permisos p = new permisos().get(sqlite.getUser());
+        
+        if(p.getPconsultar()==0){
+            vistaResultados.setVisible(false);
+            txtBusqueda.setEditable(false);
+        }else{
+            vistaResultados.setVisible(true);
+            txtBusqueda.setEditable(true);
+        }
+        
+    }
+    
+    
+    public void show() throws IOException{
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/sicem/view/productos/productos.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.getIcons().add(new Image("/sicem/images/favicon.png"));
+            stage.showAndWait();
+    }
     
 }

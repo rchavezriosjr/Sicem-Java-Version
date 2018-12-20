@@ -7,15 +7,30 @@ create table Usuario(
 	Contraseña varchar(50),
 	Nombre varchar(50),
 	Apellido varchar(50),
-	FotoPerfil blob,
+	Foto blob,
 	Estado int,
-	FechaCreacion date,
-	FechaModificacion datetime
+	FechaCreacion varchar(80),
+	FechaModificacion varchar(80)
+);
+
+create table Permisos(
+	IDusuario varchar(15) primary key,
+    directorioConsultar int,
+    directorioEditar int,
+    directorioCrear int,
+    operacionesConsultar int,
+    operacionesEditar int,
+    operacionesCrear int,
+    productosConsultar int,
+    productosEditar int,
+    productosCrear int,
+    reportes int,
+    accesoTotal int
 );
 
 create table Cliente(
 	ID varchar(25) primary key not null,
-	NombreCliente varchar(75),
+	Nombre varchar(75),
 	NombreContacto varchar(50),
 	TituloContacto varchar(35),
 	Domicilio varchar(200),
@@ -23,7 +38,7 @@ create table Cliente(
 	Telefono varchar(25),
 	Email varchar(50),
 	Estado int,
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
 create table Proveedor(
@@ -36,15 +51,15 @@ create table Proveedor(
 	Telefono varchar(25),
 	Email varchar(50),
 	Estado int,
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
-create table RH_Empleado(
+create table Empleado(
 	ID int primary key not null,
 	Nombres varchar(80),
 	Apellidos varchar(80),
 	DepartamentoID int,
-	TituloLaboral varchar(35),
+	TituloLaboral varchar(50),
 	FechaDeNacimiento date,
 	FechaDeContratacion date,
 	EstadoCivil int,
@@ -54,20 +69,20 @@ create table RH_Empleado(
 	Telefono varchar(25),
 	Cedula varchar(25),
 	Email varchar(50),
-	HorasVacaciones int,
-	HorasLicenciaEnfermedad int,
 	Observaciones text,
 	ReportarA int,
 	Foto blob,
 	Estado int,
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
-create table RH_Departamentos(
+create table Departamentos(
 	ID int primary key,
 	Nombre varchar(35),
 	NombreGrupo varchar(35),
-	FechaModificacion datetime
+    Estado int,
+	FechaCreacion varchar(80),
+	FechaModificacion varchar(80)
 );
 
 create table Producto(
@@ -79,7 +94,7 @@ create table Producto(
 	Stock int,
 	Descripcion varchar(250),
 	Estado int,
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
 create table HistorialPrecioProducto(
@@ -96,21 +111,11 @@ create table HistorialCostoProducto(
 	Precio decimal(18,2)
 );
 
-create table Bodega(
-	ID int primary key,
-	Nombre varchar(35),
-	Almacenaje int,
-	Comentarios text,
-	Estado int,
-	FechaModificacion datetime
-);
-
-create table Inventario(
-	ID int primary key,
+create table HistorialEntradaProducto(
 	ProductoID int,
-	BodegaID int,
-	Estante varchar(50),
-	Cantidad int
+	Cantidad int,
+	CostoUnitario decimal(18,2),
+	Fecha varchar(80)
 );
 
 create table Categoria(
@@ -118,8 +123,8 @@ create table Categoria(
 	Nombre varchar(50),
 	Descripcion varchar(250),
 	Estado int,
-	FechaCreacion date,
-	FechaModificacion datetime
+	FechaCreacion varchar(80),
+	FechaModificacion varchar(80)
 );
 
 create table Compra(
@@ -128,7 +133,7 @@ create table Compra(
 	FechaCompra date,
 	TipoPago int,
 	Monto decimal(18,2),
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
 create table Detalle_Compra(
@@ -137,7 +142,7 @@ create table Detalle_Compra(
 	Cantidad int not null,
 	CostoUnitario decimal(18,2) not null,
 	Total decimal(18,2),
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
 create table Venta( 
@@ -149,7 +154,7 @@ create table Venta(
 	SubTotal decimal(18,2),
 	Impuesto decimal(18,2),
 	Total decimal(18,2),
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );
 
 create table Detalle_Venta(
@@ -160,5 +165,5 @@ create table Detalle_Venta(
 	Descuento decimal(18,2),
 	Impuesto decimal(18,2),
 	Total decimal(18,2),
-	FechaModificacion datetime
+	FechaModificacion varchar(80)
 );

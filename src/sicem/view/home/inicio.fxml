@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="950.0" styleClass="white" stylesheets="@../../css/estilos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="sicem.view.home.InicioController">
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="950.0" styleClass="white" stylesheets="@../../css/estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sicem.view.home.InicioController">
    <children>
       <HBox layoutX="69.0" layoutY="29.0" prefHeight="100.0" prefWidth="200.0" spacing="23.0" AnchorPane.leftAnchor="40.5" AnchorPane.rightAnchor="40.5" AnchorPane.topAnchor="50.0">
          <children>
@@ -93,10 +92,11 @@
          <children>
             <Pane id="topclientes" prefHeight="300.0" prefWidth="280.0" styleClass="content-table">
                <children>
-                  <TableView layoutY="45.0" prefHeight="255.0" prefWidth="280.0">
+                  <TableView fx:id="topClientes" layoutY="45.0" prefHeight="255.0" prefWidth="280.0" styleClass="tableview-detail-noshadow">
                     <columns>
-                      <TableColumn maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
-                      <TableColumn maxWidth="230.0" minWidth="230.0" prefWidth="230.0" text="Nombre" />
+                      <TableColumn fx:id="TCcolumnID" editable="false" maxWidth="73.0" minWidth="73.0" prefWidth="73.0" resizable="false" sortable="false" text="ID" />
+                      <TableColumn fx:id="TCcolumnNombre" editable="false" maxWidth="103.0" minWidth="103.0" prefWidth="103.0" resizable="false" sortable="false" text="Nombre" />
+                        <TableColumn fx:id="TCcolumnRecaudacion" editable="false" maxWidth="103.0" minWidth="103.0" prefWidth="103.0" resizable="false" sortable="false" text="Recaudación" />
                     </columns>
                   </TableView>
                   <Label layoutX="10.0" layoutY="15.0" text="Top clientes" textFill="ROYALBLUE">
@@ -113,10 +113,11 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TableView layoutY="45.0" prefHeight="255.0" prefWidth="280.0">
+                  <TableView fx:id="ultimasVentas" layoutY="45.0" prefHeight="255.0" prefWidth="280.0" styleClass="tableview-detail-noshadow">
                      <columns>
-                        <TableColumn maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
-                        <TableColumn maxWidth="230.0" minWidth="230.0" prefWidth="230.0" text="Nombre" />
+                        <TableColumn fx:id="UVcolumnID" editable="false" maxWidth="73.0" minWidth="73.0" prefWidth="73.0" resizable="false" sortable="false" text="ID" />
+                        <TableColumn fx:id="UVcolumnFecha" editable="false" maxWidth="103.0" minWidth="103.0" prefWidth="103.0" resizable="false" sortable="false" text="Fecha" />
+                        <TableColumn fx:id="UVcolumnTotal" editable="false" maxWidth="103.0" minWidth="103.0" prefWidth="103.0" resizable="false" sortable="false" text="Total" />
                      </columns>
                   </TableView>
                </children>
@@ -128,10 +129,11 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TableView layoutY="45.0" prefHeight="255.0" prefWidth="280.0">
+                  <TableView fx:id="productosVendidos" layoutY="45.0" prefHeight="255.0" prefWidth="280.0" styleClass="tableview-detail-noshadow">
                      <columns>
-                        <TableColumn maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
-                        <TableColumn maxWidth="230.0" minWidth="230.0" prefWidth="230.0" text="Nombre" />
+                        <TableColumn fx:id="PVcolumnID" editable="false" maxWidth="73.0" minWidth="73.0" prefWidth="73.0" resizable="false" sortable="false" text="ID" />
+                        <TableColumn fx:id="PVcolumnNombre" editable="false" maxWidth="103.0" minWidth="103.0" prefWidth="103.0" resizable="false" sortable="false" text="Nombre" />
+                        <TableColumn fx:id="PVcolumnUnidades" editable="false" maxWidth="103.0" minWidth="103.0" prefWidth="103.0" resizable="false" sortable="false" text="Unidades" />
                      </columns>
                   </TableView>
                </children>

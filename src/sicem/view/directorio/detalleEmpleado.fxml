@@ -23,7 +23,7 @@
       <Label layoutX="300.0" layoutY="39.0" styleClass="label-form" text="Género" AnchorPane.leftAnchor="300.0" />
       <TextField fx:id="txtNombre" editable="false" layoutX="110.0" layoutY="121.0" prefHeight="28.0" prefWidth="338.0" styleClass="textfield-detail" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="121.0" />
       <Label layoutX="110.0" layoutY="102.0" styleClass="label-form" text="Nombres y apellidos" AnchorPane.leftAnchor="110.0" />
-      <TabPane fx:id="contentTabs" layoutX="20.0" layoutY="169.0" prefHeight="37.0" prefWidth="490.0" styleClass="tabpane-form" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="169.0">
+      <TabPane fx:id="contentTabs" layoutX="20.0" layoutY="169.0" prefHeight="37.0" prefWidth="490.0" styleClass="navbar" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="169.0">
         <tabs>
           <Tab fx:id="infoPersonal" closable="false" styleClass="tab-form" text="Información personal" />
           <Tab fx:id="infoLaboral" styleClass="tab-form" text="Información laboral" />

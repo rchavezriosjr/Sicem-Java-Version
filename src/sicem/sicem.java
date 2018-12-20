@@ -5,15 +5,13 @@
  */
 package sicem;
 
+import DB.conexion;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
+import sicem.view.LoginController;
+import sicem.view.configuracion.ConexionWizardController;
 
 /**
  *
@@ -21,19 +19,21 @@ import javafx.stage.StageStyle;
  */
 public class sicem extends Application {
     
+    private void inicia(){
+        try{
+            conexion c = new conexion();
+            c.open();
+            new LoginController().show();
+                    
+            c.close();
+        }catch(Exception ex){
+            new ConexionWizardController().show();
+        }
+    }
+    
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/sicem/view/login.fxml"));
-        
-        Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT);
-        
-        primaryStage.setTitle("Sicem");
-        primaryStage.getIcons().add(new Image("/sicem/images/favicon.png"));
-        primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
+    public void start(Stage primaryStage) throws IOException, SQLException {
+        inicia();
     }
 
     /**
@@ -44,3 +44,8 @@ public class sicem extends Application {
     }
     
 }
+
+/*
+PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+textfield.pesudoClassStateChanged(errorClass, true) // or false to unset it
+*/

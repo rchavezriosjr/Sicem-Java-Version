@@ -16,7 +16,8 @@ import javafx.scene.shape.Rectangle;
  *
  * @author espinoza
  */
-public class rounded {
+public final class rounded {
+    private rounded(){}
     
     public static void roundImageView(ImageView iv, Image i){
         double w = iv.getFitWidth(), h = iv.getFitHeight();
