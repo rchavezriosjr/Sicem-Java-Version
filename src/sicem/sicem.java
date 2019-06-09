@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import sicem.view.LoginController;
 import sicem.view.configuracion.ConexionWizardController;
+import sicem.view.directorio.ClienteFormController;
 
 /**
  *
@@ -23,7 +24,7 @@ public class sicem extends Application {
         try{
             conexion c = new conexion();
             c.open();
-            new LoginController().show();
+            new ClienteFormController().show();
                     
             c.close();
         }catch(Exception ex){

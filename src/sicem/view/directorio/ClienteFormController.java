@@ -47,7 +47,7 @@ public class ClienteFormController implements Initializable {
     @FXML private TextField txtTel;
     @FXML private TextArea txtDireccion;
     @FXML private ComboBox<String> txtCiudad;
-    @FXML private CheckBox EstadoV;
+    @FXML private CheckBox EstadoValue;
     @FXML private Pane title;
     @FXML private Label titleLbl;
     
@@ -86,7 +86,7 @@ public class ClienteFormController implements Initializable {
         
         // Evt botón cancelar
         cancelar.setOnAction(e -> { close(); });
-        
+
         
         // Evt boton guadar
         guardar.setOnAction(e -> {
@@ -100,7 +100,7 @@ public class ClienteFormController implements Initializable {
             c.setCiudad(txtCiudad.getSelectionModel().getSelectedItem());
             c.setEmail(txtEmail.getText());
             c.setTelefono(txtTel.getText());
-            c.setEstado((EstadoV.isSelected()) ? 1 : 0);
+            c.setEstado((EstadoValue.isSelected()) ? 1 : 0);
 
             if (accionformulario.equals("crear")) transac = c.Insertar();
             else transac = c.Editar();
@@ -129,7 +129,7 @@ public class ClienteFormController implements Initializable {
             txtTel.setText(data.getTelefono());
             txtDireccion.setText(data.getDomicilio());
             txtCiudad.getSelectionModel().select(data.getCiudad());
-            EstadoV.setSelected((data.getEstado()==1) ? true : false);
+            EstadoValue.setSelected((data.getEstado()==1) ? true : false);
         }else {
             Popup.error(
                 "Error con la solicitud", 
